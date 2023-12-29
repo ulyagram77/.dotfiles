@@ -1,0 +1,106 @@
+#! /bin/bash
+
+super + space
+  rofi -show drun
+
+super + Return
+  alacritty
+
+@Print
+  flameshot gui
+
+super + shift + e
+  thunar
+
+super + shift + c
+  code
+
+super + shift + f
+  google-chrome-stable
+
+super + shift + t
+  telegram-desktop
+
+super + l
+  betterlockscreen --lock
+
+super + p
+  bash ~/.config/bspwm/scripts/pick_color 
+
+
+#ПЕРЕЗАГРУЗИТЬ КОНФИГ SXHKD
+super + ctrl + r
+  pkill -USR1 -x sxhkd && bspc {quit,wm -r}
+
+super + ctrl + shift + r 
+  pkill -USR1 -x sxhkd
+
+super + ctrl + shift + p
+  pkill -USR1 -x polybar
+
+#ПЕРЕЗАГРУЗКА
+super + shift + r
+  reboot
+
+#ВЫКЛЮЧЕНИЕ
+super + shift + p
+  poweroff
+
+
+
+
+
+
+
+#ПОМЕНЯТЬ СТАТУС ОКНА НА /ТАЙЛОВОЕ/ПСЕВДО ТАЙЛОВОЕ/ПЛАВАЮЩЕЕ/ПОЛНОЭКРАННОЕ
+super + {Tab,shift + Tab,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+  bspc node -g {marked,locked,sticky,private}
+
+#ВЫБРАТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + alt + {Left,Down,Up,Right}
+  bspc node -p {west,south,north,east}
+
+#ОТМЕНИТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
+super + alt + space
+  bspc node -p cancel
+
+#ПЕРЕКЛЮЧИТСЯ НА ВОРКСПЕЙС ИЛИ ПЕРЕТАЩИТЬ НА НЕГО АКТИВНОЕ ОКНО
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f,node -d} '^{1-9,10}'
+
+#ЗАКРЫТЬ ОКНО ИЛИ УБИТЬ ЕГО
+super + {_, shift + }q
+  bspc node -{c}
+
+#ПЕРЕМЕЩЕНИЕ ТАЙЛИНГОВЫХ ОКОН
+super + {_,shift + }{Left,Down,Up,Right}
+  bspc node -{f,s} {west,south,north,east}
+
+#РЕСАЙЗ ТАЙЛИНГОВЫХ ОКОН
+super + ctrl + {Left,Down,Up,Right}
+  {bspc node -z left -20 0; bspc node -z right -20 0, \
+  bspc node -z bottom 0 20; bspc node -z top 0 20, \
+  bspc node -z bottom 0 -20; bspc node -z top 0 -20, \ 
+  bspc node -z left 20 0; bspc node -z right 20 0}
+
+#РЕСАЙЗА ПЛАВАЮЩИХ ОКОН
+alt + ctrl + {Left,Down,Up,Right}
+  {bspc node -z right -20 20, \
+  bspc node -z bottom 20 20, \
+  bspc node -z bottom 20 -20, \
+  bspc node -z right 20 20}
+
+#ПЕРЕМЕЩЕНИЕ ПЛАВАЮЩИХ ОКОН 
+ctrl + shift + {Left,Down,Up,Right}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+
+# НАСТРОЙКА СИСТЕМНЫХ КЛАВИШ 
+XF86Audio{Mute,RaiseVolume,LowerVolume}
+  bash ~/.config/bspwm/scripts/volume_control {mute, up, down}
+@XF86AudioMicMute
+  amixer set Capture togglemute
+XF86MonBrightness{Up,Down}
+  bash ~/.config/bspwm/scripts/brightness_control {up, down}
