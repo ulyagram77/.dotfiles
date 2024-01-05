@@ -17,7 +17,7 @@ Here you can see how to config [terminal](https://www.microsoft.com/store/produc
 Copy `settings.json` file to folder of terminal by following this path or click on icon in the program:
 
 ```bash
-  C:\Users\kiril\AppData\Local\Packages\Microsoft.WindowsTerminal\LocalState
+  C:\Users\{your_user}\AppData\Local\Packages\Microsoft.WindowsTerminal\LocalState
 ```
 
 Install `oh-my-posh` using `scoop`:
@@ -42,6 +42,6 @@ Paste some code in this file:
 Also you can find some themes on official github or resetup theirs json file, you can find them locally here:
 
 ```bash
-  C:\Users\kiril\AppData\Local\Programs\oh-my-posh\themes
+  C:\Users\{your_user}\AppData\Local\Programs\oh-my-posh\themes
 ```
 
